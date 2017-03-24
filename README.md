@@ -1,12 +1,15 @@
-# Polleitor
+# Recruit
+Basado en 
+
 _Version 0.1.1_    
 [![Build Status](https://travis-ci.org/oslugr/polleitor.svg?branch=master)](https://travis-ci.org/oslugr/polleitor)
 [![Coverage Status](https://coveralls.io/repos/github/oslugr/polleitor/badge.svg?branch=master)](https://coveralls.io/github/oslugr/polleitor?branch=master)
 
-Sistema cliente-servidor para crear widgets de encuestas.
+Sietema cliente-servidor derivado de polleitor para evaluar candidatos
 
 La parte servidor usa LokiDB para almacenar las encuestas y resultados y funciona con REST, la parte cliente JavaScript para configurar las encuestas y enviar los resultados.
 
+Tiene la dependendencia en NodeJS de Yerbamate
 La configuración se hace en el servidor y en él se almacenan los resultados.
 
 ## Instalación
@@ -26,7 +29,7 @@ Iniciar servidor:
 npm start
 ```
 
-De ahí, te vas al menú Principal de Polleitor en http://localhost:3000
+De ahí, te vas al menú Principal de REcruit en http://localhost:3000
 y listo. Aparecerá una pequeña demo.
 
 Si usas [Heroku](http://heroku.com), cambia `repository` en el fichero de configuración `app.json` y
@@ -36,7 +39,7 @@ Si usas [Heroku](http://heroku.com), cambia `repository` en el fichero de config
 	git push heroku master
 
 
-## Documentación
+## Documentación de Polleitor ya iré adaptandola a Recruit
 
 Generar esta documentación:
 ```bash
