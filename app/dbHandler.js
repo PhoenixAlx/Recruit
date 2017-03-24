@@ -6,15 +6,29 @@
 // ## Dependencias
 // * **Lokijs:** Base de datos no relacional en memoria
 var loki = require('lokijs');
-
+var yerbamate=require('yerbamate');
+var pkg=yerbamate.loadPackage(module);
 // ### Dependencias Locales
 // * [**Config**](./config.html): Configuración general de Polleitor
 var config = require('./config');
 
+
 // ## Conexión con Lokijs
 module.exports = function(done,save) {
     if(save!==false) save=true;
-
+    /*var yerba_sent=yerbamate.run('python app/sentiment.py "'+value_string+'"',function(code,out,errs){
+                        console.log("Yerbamateeeeeeeeeeeeeeeeeeeeeeee ")
+                        console.log(yerbamate);
+                        console.log(out);
+                        if(yerbamate.successCode(code)){
+                            console.log("Success - "+out);
+                            var datas_sent = out[0].split(","); 
+                            
+                             
+                        }else{
+                            console.log("Error: "+errs[0]);
+                        }
+                });*/
     // Configuración de lokijs
     var db = new loki(config.loki_db_name, {
         autosave: save,
@@ -35,6 +49,9 @@ module.exports = function(done,save) {
                 return {
                     question: q.question,
                     options: q.options,
+                    type: q.type,
+                    label: q.label,
+                    submit: q.submit,
                     id: q.$loki
                 };
             });
@@ -53,9 +70,10 @@ module.exports = function(done,save) {
         answerQuestion: function(poll, id, answer, token,agent) {
             var coll = db.getCollection(poll);
             var q = coll.get(id);
-            if (!coll || !token || !q || q.answers[token] !== undefined || answer < 0 || answer >= q.options.length) return false;
+            
+            if (!coll || !token || !q || q.answers[token] !== undefined || answer < 0 || answer > q.options.length) return false;
             else {
-                q.answers[token] = {id:answer,meta:agent};
+                q.answers[token] = {id:id,value:answer,meta:agent};
                 coll.update(q);
                 if(save) db.saveDatabase();
                 return true;
@@ -79,26 +97,93 @@ module.exports = function(done,save) {
             };
         },*/
         // * **getAnswersPoll(poll):** Devuelve el poll pedido con las respuestas de este. null si no existe
-        getAnswersPoll: function(poll) {
+         getAnswersPoll: async function(poll,token) {
+            console.log("POOOOOOOOOL ")
+               
             if (!this.checkPoll(poll)) return null;
             var answers = db.getCollection(poll).data.map(function(question) {
                 var results = [];
+                var datas = [];
+                
                 console.log(JSON.stringify(question));
-                for (var i = 0; i < question.options.length; i++) {
-                    results[i] = 0;
+                if (question.options.length==0){
+                    results[0] = 0;
+                    
+                }else{
+                    for (var i = 0; i < question.options.length; i++) {
+                        results[i] = 0;
+                        
+                    }
                 }
+                var value="";
+                var me_token="";
+                var value_string=""
                 for (i in question.answers) {
-                    results[question.answers[i].id]++;
+                    if (question.answers[i].id<results.length){
+                        results[question.answers[i].id]=results[question.answers[i].id]+1;
+                    }
+                    
+                    value_string=value_string+value+"**SENT**";
+                    datas.push(question.answers[i].value);
+                    if (i == token){
+                        me_token=token;
+                        value=question.answers[i].value;
+                    }
                 }
+                
+                var datas_sent ="";
+                
                 return {
                     question: question.question,
                     options: question.options,
+                    type: question.type,
+                    label: question.label,
+                    submit: question.submit,
                     answers: results,
+                    datas_answer:datas,
+                    datas_sentiment:value_string,
+                    answer_value:value,
+                    poll_name:poll,
+                    token_me:me_token,
                     id: question.$loki
                 };
             });
             if (!answers || answers.length === 0) return null;
-            else return answers;
+            else{
+                console.log("answers.datas_sentiment");
+                console.log(answers)
+                var promise = new Promise( function(resolve, reject) {
+                  
+                 
+                   yerbamate.run('python app/sentiment.py "'+answers[0].datas_sentiment+'"',function(code,out,errs){
+
+                                if(yerbamate.successCode(code)){
+                                     console.log("out[0]");
+                                    console.log(out[0])
+                                    answers[0].datas_sentiment = out[0]; 
+                                     resolve(answers);
+                                }else{
+                                    console.log("Error: "+errs[0]);
+                                    reject("Promesa Rechazada!" +out);
+                                }
+                                
+                        });
+ 
+                  
+                });
+                await promise.then(   function(answers) {
+                    console.log("promesa resuelta")
+                    console.log(answers); // "Promesa Resuelta!"
+                    
+
+                }, function(err) {
+                  console.log(err); // Error: "Promesa Rechazada!"
+                });
+                console.log("answers.datas_sentiment FINAAAAAAAAAL");
+                console.log(answers)
+                return answers;
+                
+            }
         },
         // * **checkPoll(poll):** Comprueba si existe el poll dado
         checkPoll: function(poll) {
@@ -123,6 +208,9 @@ module.exports = function(done,save) {
                     coll.insert({
                         question: quest.q,
                         options: quest.a,
+                        type: quest.t,
+                        submit: quest.s,
+                        label:quest.l,
                         answers: {}
                     });
                 }

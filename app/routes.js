@@ -76,8 +76,18 @@ module.exports = function(app, handler) {
     });
 
     //GET `/:poll/resultados` Muestra el poll y los resultados
-    app.get('/:poll/resultados', function(req, res) {
-        var answers = handler.getAnswersPoll(req.params.poll);
+    app.get('/:poll/resultados', async function(req, res) {
+        var agent = useragent.parse(req.headers['user-agent']);
+        var dev_id = (agent.toAgent() +
+                '_' + agent.os.toString() + '_' +
+                agent.device.toString()).replace(/\s/g, '');
+        var value = 'ID:' + req.params.id + '_' + dev_id;
+
+            //Crea el token
+        var token2 = jwt.sign(value, config.secret);
+
+         var answers = await handler.getAnswersPoll(req.params.poll,token2);
+        //answers = handler.getSentAnswers(req.params.poll,answers);
 
         if (!answers) {
             return res.status(404).json({
