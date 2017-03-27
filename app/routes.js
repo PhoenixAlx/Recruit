@@ -76,26 +76,23 @@ module.exports = function(app, handler) {
     });
 
     //GET `/:poll/resultados` Muestra el poll y los resultados
-    app.get('/:poll/resultados', async function(req, res) {
+    app.get('/:poll/resultados', function(req, res) {
         var agent = useragent.parse(req.headers['user-agent']);
         var dev_id = (agent.toAgent() +
-                '_' + agent.os.toString() + '_' +
-                agent.device.toString()).replace(/\s/g, '');
+            '_' + agent.os.toString() + '_' +
+            agent.device.toString()).replace(/\s/g, '');
         var value = 'ID:' + req.params.id + '_' + dev_id;
 
-            //Crea el token
+        //Crea el token
         var token2 = jwt.sign(value, config.secret);
 
-         var answers = await handler.getAnswersPoll(req.params.poll,token2);
-        //answers = handler.getSentAnswers(req.params.poll,answers);
-
-        if (!answers) {
-            return res.status(404).json({
+        handler.getAnswersPoll(req.params.poll, token2).then(function(answers) {
+            res.json(answers);
+        }).catch(function(err) {
+            res.status(404).json({
                 error: 'Poll ' + req.params.poll + ' not found.'
             });
-        } else {
-            return res.json(answers);
-        }
+        });
     });
 
     /*app.get('/:poll/p/:f', function(req, res) {
@@ -151,11 +148,11 @@ module.exports = function(app, handler) {
         var answers = req.body.answers;
         var poll = req.params.poll;
         var agent = useragent.parse(req.headers['user-agent']);
-        
+
         var correct = 0;
         var incorrect = 0;
         for (var i = 0; i < answers.length; i++) {
-            var r = handler.answerQuestion(poll, answers[i].id, answers[i].answer, token,agent);
+            var r = handler.answerQuestion(poll, answers[i].id, answers[i].answer, token, agent);
             if (r) correct++;
             else incorrect++;
             console.log(JSON.stringify({
