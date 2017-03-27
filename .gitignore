@@ -5,3 +5,4 @@ polls.json
 test.json
 coverage/
 doc/
+node_modules/

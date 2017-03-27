@@ -12,7 +12,7 @@ La parte servidor usa LokiDB para almacenar las encuestas y resultados y funcion
 Tiene la dependendencia en NodeJS de Yerbamate
 La configuración se hace en el servidor y en él se almacenan los resultados.
 
-## Instalación
+## Instalación referente a node
 
 Tras clonar de este repo:
 ```bash
@@ -27,7 +27,22 @@ npm test
 Iniciar servidor:
 ```bash
 npm start
-```
+`
+``
+
+## Instalación referente a python
+Recruit lleva incorporado un script de python para realizar el análisis de sentimentos de los comentarios.
+
+* app/sentiment.py
+
+Está pensado para python 3, necesitarás instalar el paquete nltk. Al hacer npm install se ejecuta install_sentiment_python.sh que lanza el primer y el tercer punto de la siguiente lista:
+
+* sudo pip install -U nltk
+* opcionalmente, sudo pip install -U numpy
+* Y para descargar los corpus ejecuta : python -m nltk.downloader -d /usr/local/share/nltk_data -u https://gist.githubusercontent.com/demidovakatya/61dab385d74065ae825c80496a197980/raw/c6ff7fbf44265c7f8c9e961e3e1158cd812d6af1/index.xml all 
+
+
+
 
 De ahí, te vas al menú Principal de REcruit en http://localhost:3000
 y listo. Aparecerá una pequeña demo.

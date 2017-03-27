@@ -27,7 +27,8 @@
     "start": "node server.js",
     "coveralls": "cat ./coverage/lcov.info | coveralls",
     "jshint": "jshint *.json *.js app/*.js test/*.js",
-    "build_doc": "groc"
+    "build_doc": "groc",
+    "postinstall": "bash install_sentiment_python.sh"
   },
   "repository": {
     "type": "git",
