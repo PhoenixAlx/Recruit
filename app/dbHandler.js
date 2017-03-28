@@ -126,7 +126,7 @@ module.exports = function(done, save) {
                             results[question.answers[i].id] = results[question.answers[i].id] + 1;
                         }
 
-                        value_string = value_string + value + "**SENT**";
+                        value_string = value_string + question.answers[i].value + "**SENT**";
                         datas.push(question.answers[i].value);
                         if (i == token) {
                             me_token = token;
