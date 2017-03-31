@@ -1,0 +1,277 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Recruit feedback</title>
+
+	<link rel="stylesheet" href="css/kube.min.css" />
+	<link rel="stylesheet" href="css/reveal.css">
+	<link rel="stylesheet" href="css/theme/black.css">
+    <link rel="stylesheet" href="css/extra.css">
+
+
+  
+	<!-- Theme used for syntax highlighting of code -->
+	<link rel="stylesheet" href="lib/css/zenburn.css">
+
+	<!-- Printing and PDF exports -->
+	<script>
+		var link = document.createElement('link');
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+		document.getElementsByTagName('head')[0].appendChild(link);
+	</script>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.6/Chart.bundle.js"></script>
+
+	<script src="js/polleitor.js"></script>
+
+</head>
+
+<body>
+	<div class="reveal">
+		<div class="slides">
+            <section data-background-color="#ffffff">
+				<h1>Recruiting feedback</h1>
+                <p>If the candidate was not in the recruiting then  you mustn't answer the respective questions.</p>
+        
+            </section>
+            <section data-background-color="#ffffff">
+				<div class="poll" data-poll-name="appointable1"></div>
+        
+            </section>
+             <section data-background-color="#ffffff">
+				<div class="poll" data-poll-name="appointable2"></div>
+        
+            </section>
+             <section data-background-color="#ffffff">
+				<div class="poll" data-poll-name="appointable3"></div>
+        
+            </section>
+            <section data-background-color="#ffffff">
+				<div class="poll" data-poll-name="appointable4"></div>
+        
+            </section>
+	
+            <section data-background-color="#ffffff">
+                <div id="divTitleRanking" name="divTitleRanking">
+                    <span>Please rank the candidates</span>
+                    <p></p>
+                     <p></p>
+                </div>
+                
+                    <row>
+                        <column cols='4'></column>
+                        <column cols='6'>Rank <1,2,3,4> </column>
+                    </row>
+                    <row class="poll" data-poll-name="ranking1"></row>
+
+                
+            </section>
+            <section data-background-color="#ffffff">
+                <div id="divTitleRanking" name="divTitleRanking">
+                    <p><span>Please rank the candidates</span></p>
+                    <p></p>
+                     <p></p>
+                </div>
+                
+                    <row>
+                        <column cols='4'></column>
+                        <column cols='6'>Rank <1,2,3,4> </column>
+                    </row>
+
+                    <row class="poll" data-poll-name="ranking2"></row>
+
+
+                
+            </section>
+            <section data-background-color="#ffffff">
+                <div id="divTitleRanking" name="divTitleRanking">
+                    <span>Please rank the candidates</span>
+                    <p></p>
+                     <p></p>
+                </div>
+                
+                    <row>
+                        <column cols='4'></column>
+                        <column cols='6'>Rank <1,2,3,4> </column>
+                    </row>
+
+                    <row class="poll" data-poll-name="ranking3"></row>
+
+                
+            </section>
+             
+            <section data-background-color="#ffffff">
+                <div id="divTitleRanking" name="divTitleRanking">
+                    <span>Please rank the candidates</span>
+                    <p></p>
+                     <p></p>
+                </div>
+                
+                    <row>
+                        <column cols='4'></column>
+                        <column cols='6'>Rank <1,2,3,4> </column>
+                    </row>
+
+                    <row class="poll" data-poll-name="ranking4"></row>
+
+                
+            </section>
+            <section data-background-color="#ffffff">
+                <div class="poll" data-poll-name="comments1"></div>
+               
+			</section>
+             <section data-background-color="#ffffff">
+
+                <div class="poll" data-poll-name="comments2"></div>
+
+			</section>
+            <section data-background-color="#ffffff">
+    
+                <div class="poll" data-poll-name="comments3"></div>
+			</section>
+            <section data-background-color="#ffffff">
+    
+                <div class="poll" data-poll-name="comments4"></div>
+			</section>
+            <section data-background-color="#ffffff">
+                <div class="poll" data-poll-name="save"></div>
+                
+			</section>
+            <section data-background-color="#ffffff" class="scrollable" id="section_show_answer">
+                <div id="show_answer"></div>
+                
+			</section>
+
+            <div class='footer'>
+                Application developed using <a href="https://github.com/oslugr/polleitor">Polleitor by OSL-UGR</a> and <a href="https://angrykoala.github.io/programming/yerbamate/">Yerbamate by Angry Koala</a>
+            </div>
+			
+			
+
+		</div>
+	</div>
+
+	<script src="lib/js/head.min.js"></script>
+	<script src="js/reveal.js"></script>
+
+
+	<script>
+		// More info https://github.com/hakimel/reveal.js#configuration
+        var date_now = new Date();
+        var date_min = new Date(2017, 2, 30, 10, 30, 00, 00);
+        var date_max = new Date(2017, 2, 30, 11, 45, 00, 00)
+        console.log(date_now);
+        console.log(date_min);
+        console.log(date_max);
+        var open_status=((date_now.getTime() >= date_min.getTime()) && (date_now.getTime() <= date_max.getTime()))
+        if (open_status){
+            Reveal.initialize({
+                history: true,
+
+                // More info https://github.com/hakimel/reveal.js#dependencies
+                dependencies: [{
+                    src: 'plugin/markdown/marked.js'
+                }, {
+                    src: 'plugin/markdown/markdown.js'
+                }, {
+                    src: 'plugin/notes/notes.js',
+                    async: true
+                }, {
+                    src: 'plugin/highlight/highlight.js',
+                    async: true,
+                    callback: function() {
+                        hljs.initHighlightingOnLoad();
+                    }
+                }]
+            });
+
+            // Código para presentar gráficos
+            var slide_re = /\#\/(\d+)/;
+            Reveal.addEventListener( 'ready', function( event ) {
+                    // event.currentSlide, event.indexh, event.indexv
+                   
+                   console.log ("iniciamos***");
+                    
+                    getAnswers("save", function(error, answers) {
+
+                            var answer = answers[0];
+
+                            var value=answer.answer_value;
+                            console.log ("answer pero al iniciaaar eeeh***");
+                            console.log(answer)
+                            if (value =='save' && answer.token_me!=""){
+                                var indices = Reveal.getIndices( document.getElementById( 'section_show_answer' ) );
+                                //Reveal.slide( indices.h, indices.v );
+                                Reveal.navigateTo( indices.h );
+                                
+                                list_answers("show_answer");
+                            }else{
+                                Reveal.navigateTo( 0 );
+                            }
+                        
+                    });
+                    
+            } );
+            
+            Reveal.addEventListener('slidechanged', function(event) {
+                    
+                getAnswers("save", function(error, answers) {
+
+                            var answer = answers[0];
+
+                            var value=answer.answer_value;
+                            if (value =='save' && answer.token_me!=""){
+                                var indices = Reveal.getIndices( document.getElementById( 'section_show_answer' ) );
+                                //Reveal.slide( indices.h, indices.v );
+                                Reveal.navigateTo( indices.h );
+                                //list_answers("show_answer");
+                            }
+                        
+                });
+                //if (typeof event.previousSlide !== 'undefined') {
+                    //var base_URI = event.previousSlide.baseURI;
+                   
+                    //var base_URI_now =  event.currentSlide.baseURI;
+
+
+                    //var state = Reveal.getState();
+                    
+
+                    //if (slide_re.exec(base_URI) != null){
+                        //var last_slide = state.indexh-1;
+                        //var this_slide = state.indexh;
+                        //console.log("Antes " + last_slide);
+                        //console.log("Luego " + this_slide);
+
+                        //if (this_slide === 14) {
+                            //list_answers("show_answer");
+                            
+                        //}
+                        ////if (last_slide === '1') {
+                            ////console.log(base_URI);
+                            ////plot_chart('asignatura', 'asignatura_chart');
+                        ////}
+                        ////if (last_slide === '2') {
+                            ////console.log(base_URI);
+                            ////plot_chart('TFG', 'TFG_chart');
+                        ////}
+                    //}
+                //}
+            });
+            
+        }else{
+            window.open("https://economics.mdx.ac.uk/recruit/","_self")
+        }
+		
+	</script>
+</body>
+
+</html>

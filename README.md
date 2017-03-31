@@ -43,9 +43,14 @@ Está pensado para python 3, necesitarás instalar el paquete nltk. Al hacer npm
 
 
 
+Una vez lanzado tiene tres páginas:
 
-De ahí, te vas al menú Principal de REcruit en http://localhost:3000
-y listo. Aparecerá una pequeña demo.
+* Index.html : Que sirve para gestionar una ventana de tiempo en la que permanecerá abierta
+* feedback.html: Que a parte de la gestión de la ventana de tiempo también es la que recoge las respuestas a las cuestiones configuradas.
+* result.html: Que es la que muestra los resultados en gráficas.
+
+
+
 
 Si usas [Heroku](http://heroku.com), cambia `repository` en el fichero de configuración `app.json` y
 
@@ -56,13 +61,9 @@ Si usas [Heroku](http://heroku.com), cambia `repository` en el fichero de config
 
 ## Documentación de Polleitor ya iré adaptandola a Recruit
 
-Generar esta documentación:
-```bash
-npm install -g groc
-groc
-```
 
-[Click](https://oslugr.github.io/polleitor) para ver la documentación online
+
+Para ver la documentación de Polleitor [Click](https://oslugr.github.io/polleitor) 
 
 Los ficheros principales son:
 
@@ -72,7 +73,7 @@ Los ficheros principales son:
 
 
 
-## API
+## API Polleitor
 Se accede al servicio mediante una API REST:
 
 | **Método** | **Ruta**           | **Descripción**       | **Petición**| **Respuesta**|
@@ -81,7 +82,16 @@ Se accede al servicio mediante una API REST:
 | GET        |`:poll/resultados`  | Devuelve el poll y los resultados|Sin cuerpo en la petición|`[{question,[options],id,[answers]}]`|
 | PUT        |`:poll`             | Envía respuestas a las preguntas de un poll |`[{id,answer}]`|`{poll,updates,failedUpdates}`|
 
+## Variaciones de la API en Recruit
+
+* Nuevos tipos de pregunta. Existe options, ranks y textarea. Cada uno se presenta de una forma y se controla su guardado de forma diferente.
+* Cuando se solicitan las repuestas ahora el valor de la respuesta del usuario que la solicita está en el campo value y todas las respuestas incluyendo la propia están almacenadas en el array datas_answer. También se devuelve el token del usuario que lo solicita; esto es útil para temas de comprobación y selección.
+
+
+
+
 ## Quien ha montado esto
 
 > Desarrollado por la Oficina de Software Libre bajo licencia MIT
 > Documentación completa en <https://oslugr.github.io/polleitor>
+> La adaptación a Recruiteitor Francisco Manuel Alexander Bueno Pérez [@Phoenix_alx](https://github.com/PhoenixAlx).

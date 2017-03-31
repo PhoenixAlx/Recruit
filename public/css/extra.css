@@ -115,17 +115,6 @@ textarea{
         bottom: 0px;
         overflow-y: auto !important;
     }
+ 
     
-    .answer_histogram{
-        width:200px !important;
-        height:300px !important;
-    }
-    #appointable_hist{
-        width:200px !important;
-        height:300px !important;
-    }
-    canvas{
-          width:200px !important;
-        height:300px !important;
-    }
 }

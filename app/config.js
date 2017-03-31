@@ -15,73 +15,73 @@ module.exports = {
             "q": "Candidate $1 appointable?",
             "a": ["Yes", "No"],
             "t":"option",
-            "l":"1"//"Marina Dodourova"
+            "l":"1"
         }],
         "appointable2": [{
             "q": "Candidate $1 appointable?",
             "a": ["Yes", "No"],
             "t":"option",
-            "l":"2"//"Sajjad Jasimuddin"
+            "l":"2"
         }],
         "appointable3": [{
             "q": "Candidate $1 appointable?",
             "a": ["Yes", "No"],
             "t":"option",
-            "l":"3"//"Thomas Lange"
+            "l":"3"
         }],
          "appointable4": [{
             "q": "Candidate $1 appointable?",
             "a": ["Yes", "No"],
             "t":"option",
-            "l":"4"//"Niall Piercy"
+            "l":"4"
         }],
         "ranking1": [{
             "q": "Candidate $1: ",
             "a": [1,2,3,4],
             "t":"rank",
-            "l":"1"//"Marina Dodourova"
+            "l":"1"
         }],
         "ranking2": [{
             "q": "Candidate $1: ",
             "a": [1,2,3,4],
             "t":"rank",
-            "l":"2"//"Sajjad Jasimuddin"
+            "l":"2"
         }],
         "ranking3": [{
             "q": "Candidate $1: ",
             "a": [1,2,3,4],
             "t":"rank",
-            "l":"3"//"Thomas Lange"
+            "l":"3"
         }],
         "ranking4": [{
             "q": "Candidate $1: ",
             "a": [1,2,3,4],
             "t":"rank",
-            "l":"4"//"Niall Piercy"
+            "l":"4"
         }],
         "comments1": [{
             "q": "Comments candidate $1 ",
             "a": [],
             "t":"textarea",
-            "l":"1"//"Marina Dodourova"
+            "l":"1"
         }],
         "comments2": [{
             "q": "Comments candidate $1 ",
             "a": [],
             "t":"textarea",
-            "l":"2"//"Sajjad Jasimuddin"
+            "l":"2"
         }],
         "comments3": [{
             "q": "Comments candidate $1 ",
             "a": [],
             "t":"textarea",
-            "l":"3"//"Thomas Lange"
+            "l":"3"
         }],
         "comments4": [{
             "q": "Comments candidate $1 ",
             "a": [],
             "t":"textarea",
-            "l":"4"//"Niall Piercy"
+            "l":"4"
         }],
         "save": [{
             "q": "To change your decision/comments click arrow button to go back. If not, click 'save'. ",

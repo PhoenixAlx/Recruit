@@ -70,8 +70,13 @@ module.exports = function(done, save) {
         answerQuestion: function(poll, id, answer, token, agent) {
             var coll = db.getCollection(poll);
             var q = coll.get(id);
-
-            if (!coll || !token || !q || q.answers[token] !== undefined || answer < 0 || answer > q.options.length) return false;
+            console.log ("******** SE va a guardar ******");
+            console.log(coll)
+            console.log(token)
+            console.log(q)
+            console.log(answer)
+            //|| answer > q.options.length
+            if (!coll || !token || !q || q.answers[token] !== undefined || answer < 0 ) return false;
             else {
                 q.answers[token] = {
                     id: id,
@@ -127,8 +132,12 @@ module.exports = function(done, save) {
                         }
 
                         value_string = value_string + question.answers[i].value + "**SENT**";
+                        console.log("******** lo de los tokeeen ***********")
+                        console.log(i)
+                        console.log(token)
                         datas.push(question.answers[i].value);
                         if (i == token) {
+                            
                             me_token = token;
                             value = question.answers[i].value;
                         }
